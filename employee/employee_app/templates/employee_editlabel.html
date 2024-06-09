@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+    <title>Update Employee</title>
+</head>
+
+{% extends "welcomePage.html" %}
+<body>
+{% block header %}
+	<h1 style="color: rgb(9, 25, 112); text-align: center; bottom: 5px;">Update Employee Details</h1>
+
+    <div class="container-fuild">
+      <form id="updateForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+		<div class="row">
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="username" class="form-label">Employee Name:</label>
+					<input type="text" name="username"  class="form-control" id="username" value="{{ employee.username }}" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="email" class="form-label">Employee Email:</label>
+					<input type="text" name="email" class="form-control" id="email" value="{{ employee.email }}" required>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="age" class="form-label">Employee Age:</label>
+					<input type="number" name="age"  class="form-control" id="age" value="{{ employee.age }}" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="gender" class="form-label">Employee Gender:</label>
+					<select class="form-select form-select-lg mb-3" name="gender" id="gender" aria-label=".form-select-lg example" required>
+						<option>{{employee.gender}}</option>
+						<option>Male</option>
+						<option>Female</option>
+						<option>Trans-gender</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="phoneNo" class="form-label">Employee Phone Number:</label>
+					<input type="number" name="phoneNo"  class="form-control" id="phoneNo"value="{{employee.phoneNo}}" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div>
+				{% if employee.photo %}
+                    <img src="{{ employee.photo.url }}" alt="{{ employee.username }} Poster" style="width: 100px; height: 100px;"/>
+                {% else %}
+					<p>No poster</p>
+                {% endif %}
+				</div>
+				<div class="mb-3">
+					<span class="form-label">Employee Photo:</span>
+					<label for="photo" class="form-label">
+						<input type="file" name="photo" id="photo" hidden>
+							<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+								<path d="M24.5 17.5V22.1667C24.5 22.7855 24.2542 23.379 23.8166 23.8166C23.379 24.2542 22.7855 24.5 22.1667 24.5H5.83333C5.21449 24.5 4.621 24.2542 4.18342 23.8166C3.74583 23.379 3.5 22.7855 3.5 22.1667V17.5" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M19.8337 9.33333L14.0003 3.5L8.16699 9.33333" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M14 3.5V17.5" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						Upload file
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h5>Employee Address</h5>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="hno" class="form-label">Employee House Number:</label>					
+					<input type="text" name="hno" value="{{ employee.address.hno }}"  class="form-control" id="hno" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="street" class="form-label">Employee Street:</label>
+					<input type="text" name="street" class="form-control" id="street" value="{{ employee.address.street }}" required>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="state" class="form-label">Employee State:</label>	
+					<select class="form-select form-select-lg mb-3" name="state" id="state" aria-label=".form-select-lg example" required>
+						<option value="{{ employee.address.state }}">{{ employee.address.state }}</option>
+						<option value="Andhra Pradesh">Andhra Pradesh</option>
+						<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+						<option value="Assam">Assam</option>
+						<option value="Bihar">Bihar</option>
+						<option value="Chandigarh">Chandigarh</option>
+						<option value="Chhattisgarh">Chhattisgarh</option>
+						<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+						<option value="Daman and Diu">Daman and Diu</option>
+						<option value="Delhi">Delhi</option>
+						<option value="Goa">Goa</option>
+						<option value="Gujarat">Gujarat</option>
+						<option value="Haryana">Haryana</option>
+						<option value="Himachal Pradesh">Himachal Pradesh</option>
+						<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+						<option value="Jharkhand">Jharkhand</option>
+						<option value="Karnataka">Karnataka</option>
+						<option value="Kerala">Kerala</option>
+						<option value="Ladakh">Ladakh</option>
+						<option value="Lakshadweep">Lakshadweep</option>
+						<option value="Madhya Pradesh">Madhya Pradesh</option>
+						<option value="Maharashtra">Maharashtra</option>
+						<option value="Manipur">Manipur</option>
+						<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+						<option value="Meghalaya">Meghalaya</option>
+						<option value="Mizoram">Mizoram</option>
+						<option value="Nagaland">Nagaland</option>
+						<option value="Narora">Narora</option>
+						<option value="Odisha">Odisha</option>
+						<option value="Pondicherry">Pondicherry</option>
+						<option value="Punjab">Punjab</option>
+						<option value="Rajasthan">Rajasthan</option>
+						<option value="Sikkim">Sikkim</option>
+						<option value="Tamil Nadu">Tamil Nadu</option>
+						<option value="Telangana">Telangana</option>
+						<option value="Tripura">Tripura</option>
+						<option value="Uttar Pradesh">Uttar Pradesh</option>
+						<option value="Uttarakhand">Uttarakhand</option>
+						<option value="West Bengal">West Bengal</option>
+					</select>					
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="city" class="form-label">Employee City:</label>
+					<input type="text" name="city" class="form-control" id="city" value="{{ employee.address.city }}" required>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h5>Employee Work Experience</h5>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="companyName" class="form-label">Employee Company Name:</label>					
+					<input type="text" name="companyName"  class="form-control" id="companyName" value="{{ employee.workExperience.companyName }}" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="fromDate" class="form-label">Employee from Date:</label>
+					<input type="date" name="fromDate" class="form-control" id="fromDate" value="{{ employee.workExperience.fromDate|date:'Y-m-d'  }}" required>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="toDate" class="form-label">Employee to Date:</label>					
+					<input type="date" name="toDate"  class="form-control" id="toDate" value="{{ employee.workExperience.toDate|date:'Y-m-d'  }}" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="job_location" class="form-label">Employee Job Locotion:</label>
+					<input type="text" name="job_location" class="form-control" id="job_location" value="{{ employee.workExperience.job_location }}" required>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h5>Employee Qualification</h5>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="qualificationName" class="form-label">Employee Qualification Name:</label>					
+					<input type="text" name="qualificationName"  class="form-control" id="qualificationName" value="{{ employee.qualifications.qualificationName }}"" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="percentage" class="form-label">Employee percentage:</label>
+					<input type="number" name="percentage" class="form-control" id="percentage" value="{{ employee.qualifications.percentage }}" required>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h5>Employee Project</h5>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="title" class="form-label">Employee Project Name:</label>					
+					<input type="text" name="title"  class="form-control" id="title" value="{{ employee.projects.title }}" required>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="mb-3">
+					<label for="description" class="form-label">Employee Project Description:</label>
+					<textarea name="description" class="form-control" id="description" rows="5" cols="5" required>{{ employee.projects.description }}</textarea>
+				</div>
+			</div>
+		</div>
+        <button type="submit" value="submit" class="btn btn-primary float-end my-2">Update Employee</button>
+      </form>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+        $(document).ready(function() {
+            $('#updateForm').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+                var formData = $(this).serialize(); // Serialize form data
+                
+                $.ajax({
+                    url: "{% url 'employee:employee_editlabel' employee.username %}",
+                    type: 'POST',
+                    data: formData,
+                    success: function(data) {
+                        // Handle success response
+                        alert(data.message);
+						window.location.href="{% url 'employee:employee_content' %}";
+						
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+	
+</body>
+  {% endblock %}
+</html>
